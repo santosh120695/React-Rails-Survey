@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Survey2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+
+  <body style="margin:0;background-color: #fafafa">
+    <%= react_component("header/Header",{prerender: false})%>
+    <%= yield %>
+  </body>
+</html>

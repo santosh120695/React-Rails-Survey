@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  scheduled_time: 2018-09-18 02:15:02
+  end_time: 2018-09-18 02:15:02
+  active: false
+
+two:
+  name: MyString
+  description: MyText
+  scheduled_time: 2018-09-18 02:15:02
+  end_time: 2018-09-18 02:15:02
+  active: false
