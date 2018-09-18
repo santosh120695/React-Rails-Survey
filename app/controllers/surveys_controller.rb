@@ -1,20 +1,37 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: [:show, :edit, :update, :destroy]
+  before_action :set_survey, only: [:show, :edit, :update, :destroy,:start_survey]
 
   # GET /surveys
   # GET /surveys.json
   def index
-    @surveys = Survey.all
+    render json: Survey.all
   end
 
   # GET /surveys/1
   # GET /surveys/1.json
   def show
+     render json: @survey
   end
 
   # GET /surveys/new
   def new
     @survey = Survey.new
+  end
+
+   def start_survey
+      attempt=Attempt.create!(survey_id:@survey.id)
+      render component: 'main/Survey' ,props: {survey:@survey,questions:@survey.get_questions,token:form_authenticity_token,attempt:attempt} ,layout: "application" ,prerender:false
+  end
+
+  def submit_survey
+      params[:question].each do |key ,value|
+        Answer.create!(question_id:key,content:value,attempt_id:params[:attempt])
+      end
+  end
+
+    def user_info
+     u= User.create(params.require(:user).permit(:name,:email,:employee_id))
+     Attempt.find(params[:attempt]).update(user_id:u.id)
   end
 
   # GET /surveys/1/edit
